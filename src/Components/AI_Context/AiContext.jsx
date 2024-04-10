@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import runChat from "../../Config/Baymax";
-import { PiArrowArcRight } from "react-icons/pi";
+
 
 const Ai_context=createContext()
 
@@ -16,17 +16,15 @@ const ContextProvider=({children})=>{
     const[history,setHistory]=useState(false)
     const[recent,setRecent]=useState("")
     const[recentans,setRecentans]=useState("")
-    const [menu, setMenu] = useState(true);
+    const[menu, setMenu] = useState(true);
     const[mobile,setMobile]=useState(true)
-    
-   
-
-    
     
     const sent =async(prompt)=>{
         setQuestion(prompt)
         setLoader(true)
-        const response=await runChat(prompt)
+
+
+        const response=await runChat(prompt)                   //   runChat method call
         // const newarray=response.split("**")
         // const replaced=newarray.replace('**', '<b>**</b>');
         // console.log(replaced) 
@@ -35,7 +33,6 @@ const ContextProvider=({children})=>{
         setAllresponse([...allresponse,response])
         setLoader(false)
     }
-
 
     const passData={
         data,
@@ -67,6 +64,8 @@ const ContextProvider=({children})=>{
         {children}
     </Ai_context.Provider>
 }
+
+//********* */
 
 const Myprovider=()=>{
     return useContext(Ai_context)
